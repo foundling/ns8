@@ -1,39 +1,25 @@
-export default class User {
+export interface IUser {
+  email: string
+  password: string
+  phoneNumber?: string
+  userId: number
+}
 
-  private _email: string
-  private _password: string
-  private _phoneNumber: string
+export default class User implements IUser {
 
-  constructor(email, password, phoneNumber?) {
+  email: string
+  password: string
+  phoneNumber: string
+  userId: number
 
-    this._password = password
-    this._email = email
-    this._phoneNumber = phoneNumber
+  constructor({ email, password, userId, phoneNumber }:IUser) {
+
+    this.password = password
+    this.email = email
+    this.userId = userId
+    this.phoneNumber = phoneNumber
 
   }
 
-  get email() {
-    return this._email
-  }
-
-  set email(newEmail) {
-    this._email = newEmail
-  }
-
-  get password() {
-    return this._password
-  }
-
-  set password(newPassword) {
-    this._password = newPassword
-  }
-
-  get phoneNumber() {
-    return this._phoneNumber
-  }
-
-  set phoneNumber(newPhoneNumber) {
-    this._phoneNumber = newPhoneNumber
-  }
 
 }
