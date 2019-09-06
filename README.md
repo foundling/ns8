@@ -14,6 +14,16 @@
 - Due to time constraints, there are no middleware validation. As a general practice, I put validation of request, query and post body parameters inside middleware to keep the route handlers clean, and mostly dedicated to handling the response data in a successful case.
 - There are user and event store tests as well as route tests for each core use case.
 - I prefix test files with 'test.' and put them along side the code they test, so the `UserStore` test will be in `src/store/test.UserStore.ts`
+- Note: I chose to solve the 'recent events' use case in a more general way by adding a `start` query parameter to the `/events` route. Events from at or after this time stamp are returned.  Here's a code example:
+
+```javascript
+
+const now = (new Date()).getTime()
+const oneDayInSeconds = 60 * 60 * 24 * 1000
+const yesterday = (new Date(now - oneDayInSeconds).getTime())
+const eventsSinceYesterday = await axios.get('http://localhost:3000/events?start=`${yesterday}`)
+
+```
 
 ## API Overview
 
