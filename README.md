@@ -65,6 +65,10 @@ There currently is no notion of a valid user nor of ownership of resources in th
 
 I would use an RDBMS like PostgreSQL or MySQL to persist the user event data more securely as well as to provide transaction mechanisms for safe concurrent read and write capability.
 
+### Store
+
+The store currently duplicates logic for Users and Events with functions like `findAll` and `findById`. This would be a good case for creating a base class that has these methods and parameterizing the specific store name when instantiating an inheriting store, so that each store instance can use the mehtods from the base class and its own configuration in order to querying the correct data.
+
 ### Login Event Type
 
 If there is a finite list of events that could be created, it might be good to standardize a list of these and keep them in an enum on the server.  If an event comes in with an event type that doesn't match that, return a 400 bad request.
