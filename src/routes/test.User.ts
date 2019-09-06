@@ -17,6 +17,7 @@ describe('/api/users', () => {
     const { data, status } = await axios.post('http://localhost:3000/api/users', {
       email: 'A@B.com',
       password: 'PASSWORD',
+      phoneNumber: '781-030-0987'
     }) 
     const newUser = data.data.user
 
@@ -24,26 +25,41 @@ describe('/api/users', () => {
     expect(newUser).to.be.an('object')
     expect(newUser).to.have.property('email', 'A@B.com')
     expect(newUser).to.have.property('password', 'PASSWORD')
+    expect(newUser).to.have.property('phoneNumber', '781-030-0987')
 
   })
 
-    /*
-  it('[POST] should fail to create a new user if that email is already in the system.', async () => {
+  it('[POST] should fail with a 409 on attempt to create a new user if that email is already in the system.', async () => {
 
-    const { data, status } = await axios.post('http://localhost:3000/api/users', {
-      email: 'A@B.com',
+    const userResponse1 = await axios.post('http://localhost:3000/api/users', {
+      email: 'Z@O.com',
       password: 'PASSWORD',
     }) 
-    const newUser = data.data.user
 
-    expect(status).to.equal(201)
-    expect(newUser).to.be.an('object')
-    expect(newUser).to.have.property('email', 'A@B.com')
-    expect(newUser).to.have.property('password', 'PASSWORD')
+    try {
+      const userResponse2 = await axios.post('http://localhost:3000/api/users', {
+        email: 'A@B.com',
+        password: 'PASSWORD',
+      }) 
+    } catch(e) {
+      expect(e.response.status).to.equal(409)
+    }
 
   })
 
-     */
+  it('[POST] should fail with a 400 on attempt to create a new user with an invalid phone number.', async () => {
+
+    try {
+      const userResponse = await axios.post('http://localhost:3000/api/users', {
+        email: 'AlexR@verizon.net',
+        password: 'PASSWORD',
+        phoneNumber: '781-303-30491' // extra digit
+      }) 
+    } catch(e) {
+      expect(e.response.status).to.equal(400)
+    }
+
+  })
 
 
 })

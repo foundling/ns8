@@ -1,5 +1,20 @@
 ## NS8 User Tracking Rest API
 
+
+## Installation
+
+- inside of the base `ns8` directory, run `npm install`
+- run `npm start` in a terminal window
+- to run tests, run `npm test` in a separate terminal window while the server is running
+
+
+## Submission Comments
+
+- I used Express for a web framework here and Mocha / Chai for a test harness and assertion library.
+- Due to time constraints, there are no middleware validation. As a general practice, I put validation of request, query and post body parameters inside middleware to keep the route handlers clean, and mostly dedicated to handling the response data in a successful case.
+- There are user and event store tests as well as route tests for each core use case.
+- I prefix test files with 'test.' and put them along side the code they test, so the `UserStore` test will be in `src/store/test.UserStore.ts`
+
 ## API Overview
 
 Documentation for NS8 API User Tracking Event API

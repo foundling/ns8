@@ -36,7 +36,8 @@ export default function User(store) {
   })
   userRouter.post('/users', async (req: Request, res: Response) => {
 
-    const { email, password, phoneNumber } = req.body
+    const { email, password, phoneNumber='' } = req.body
+    const isValidPhoneNumber = phoneNumber.length ? /^\d{3}-\d{3}-\d{4}$/.test(phoneNumber) : true 
 
     const newUser = await store.users.create({ 
       email,
@@ -44,12 +45,11 @@ export default function User(store) {
       phoneNumber,
     })
 
+    if (!isValidPhoneNumber) {
+      return res.sendStatus(HttpStatus.BAD_REQUEST)
+    }
     if (!newUser) {
-      return res.status(HttpStatus.CONFLICT).send({
-        data: {
-          user: null
-        }
-      })
+      return res.sendStatus(HttpStatus.CONFLICT)
     }
 
     return res.status(HttpStatus.CREATED).send({
