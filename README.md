@@ -13,7 +13,7 @@
 ## Submission Comments
 
 - I used Express for a web framework here and Mocha / Chai for a test harness and assertion library.
-- Due to time constraints, there are no middleware validation. As a general practice, I put validation of request, query and post body parameters inside middleware to keep the route handlers clean, and mostly dedicated to handling the response data in a successful case.
+- Due to time constraints, there is no middleware validation. As a general practice, I put validation of request, query and post body parameters inside middleware functions in order to keep the route handlers clean. The handlers are mostly dedicated to handling the response data in just the successful case.
 - There are user and event store tests as well as route tests for each core use case.
 - I prefix test files with 'test.' and put them along side the code they test, so the `UserStore` test will be in `src/store/test.UserStore.ts`
 - Note: I chose to solve the 'recent events' use case in a more general way by adding a `start` query parameter to the `/events` route. Events from at or after this time stamp are returned.  Here's a code example:
