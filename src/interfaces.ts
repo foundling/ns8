@@ -1,4 +1,3 @@
-
 export interface IUserEvent {
   type: string
   created: Date

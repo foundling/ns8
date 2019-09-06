@@ -1,7 +1,6 @@
 import { expect } from 'chai' 
 import User from './User'
 
-  /*
 describe('User Model', () => {
 
   it('Should bind email, password and userId properties on constructor call', () => {
@@ -17,7 +16,4 @@ describe('User Model', () => {
 
   })
 
-
 })
-  */
-

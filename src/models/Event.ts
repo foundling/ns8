@@ -13,7 +13,6 @@ export default class Event implements IEvent {
   userId: number
 
 
-  // zero userId == system or admin ?
   constructor({ eventType, eventId, created, userId }:IEvent) {
 
     this.eventType = eventType

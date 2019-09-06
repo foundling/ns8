@@ -54,8 +54,6 @@ export default function Event(store) {
 
   eventRouter.post('/events/:userId', async(req: Request, res: Response) => {
 
-    // add userId to event model  
-    // 
     const { eventType, userId } = req.body
     const newEvent = await store.events.create({ eventType, userId: Number(userId) })
 
