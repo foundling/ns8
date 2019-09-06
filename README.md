@@ -3,7 +3,9 @@
 
 ## Installation
 
-- inside of the base `ns8` directory, run `npm install`
+- `git clone https://github.com/foundling/ns8`
+- `cd ns8`
+- run `npm install`
 - run `npm start` in a terminal window
 - to run tests, run `npm test` in a separate terminal window while the server is running
 
